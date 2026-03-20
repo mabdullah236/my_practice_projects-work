@@ -1,0 +1,5 @@
+{
+  "name": "SecureAuth Demo",
+  "description": "A sophisticated React authentication system featuring JWT simulation, secure routing, and a modern UI/UX for signup, login, and protected dashboard access.",
+  "requestFramePermissions": []
+}
