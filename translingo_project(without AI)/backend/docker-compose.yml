@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  # Service 1: The Python Backend
+  api:
+    build: .
+    container_name: translingo_backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db_postgres
+      - db_mongo
+    environment:
+      # We use the service names (db_postgres, db_mongo) as hostnames
+      - DATABASE_URL=postgresql+asyncpg://user:password@db_postgres/translingo_db
+      - MONGO_URL=mongodb://db_mongo:27017
+      - SECRET_KEY=supersecretkey123
+    volumes:
+      # Syncs your local folder with the container so code changes update instantly
+      - .:/app
+
+  # Service 2: PostgreSQL (Users & Auth)
+  db_postgres:
+    image: postgres:15-alpine
+    container_name: translingo_postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: translingo_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # Service 3: MongoDB (Analytics & Logs)
+  db_mongo:
+    image: mongo:6.0
+    container_name: translingo_mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+# Persist data so it doesn't vanish when containers stop
+volumes:
+  postgres_data:
+  mongo_data:

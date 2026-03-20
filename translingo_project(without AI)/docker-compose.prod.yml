@@ -1,0 +1,125 @@
+version: '3.9'
+
+networks:
+  frontend_net:
+  backend_net:
+  db_net:
+  monitor_net:
+
+volumes:
+  postgres_data:
+  mongo_data:
+  prometheus_data:
+  grafana_data:
+  certbot_www:
+  certbot_conf:
+
+services:
+  # --- REVERSE PROXY ---
+  nginx:
+    image: nginx:alpine
+    container_name: translingo_nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/ssl:/etc/nginx/ssl
+      - certbot_www:/var/www/certbot
+      - certbot_conf:/etc/letsencrypt
+    depends_on:
+      - frontend
+      - gateway
+    networks:
+      - frontend_net
+      - backend_net
+
+  # --- FRONTEND ---
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    container_name: translingo_frontend
+    restart: always
+    networks:
+      - frontend_net
+
+  # --- API GATEWAY ---
+  gateway:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    command: uvicorn gateway.main:app --host 0.0.0.0 --port 8000
+    deploy:
+      replicas: 2 # Load Balancing: Runs 2 instances
+      restart_policy:
+        condition: on-failure
+    depends_on:
+      - redis
+    networks:
+      - backend_net
+      - monitor_net
+
+  # --- MICROSERVICES ---
+  auth_service:
+    build: 
+      context: ./backend
+    command: uvicorn services.auth.main:app --host 0.0.0.0 --port 8001
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://user:pass@postgres/translingo_db
+    depends_on:
+      - postgres
+    networks:
+      - backend_net
+      - db_net
+
+  translation_service:
+    build: 
+      context: ./backend
+    command: uvicorn services.translation.main:app --host 0.0.0.0 --port 8002
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 4G # Heavy AI model needs RAM
+    networks:
+      - backend_net
+      - monitor_net
+
+  # --- DATABASES ---
+  postgres:
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - db_net
+
+  mongo:
+    image: mongo:6.0
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - db_net
+
+  redis:
+    image: redis:alpine
+    networks:
+      - backend_net
+
+  # --- MONITORING STACK ---
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - monitor_net
+
+  grafana:
+    image: grafana/grafana
+    volumes:
+      - grafana_data:/var/lib/grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - monitor_net

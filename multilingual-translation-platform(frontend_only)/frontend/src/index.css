@@ -1,0 +1,82 @@
+/* NAV LINKS BUTTON STYLE WITH GRADIENT */
+ul.nav-links li a {
+  text-decoration: none;
+  color: var(--text-color);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  display: inline-block;
+  background: none;
+}
+
+/* Hover Gradient Background */
+ul.nav-links li a:hover {
+  background: linear-gradient(90deg, #ff7e5f, #feb47b);
+  color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Active Gradient Background */
+ul.nav-links li a.active {
+  background: linear-gradient(90deg, #ff7e5f, #feb47b);
+  color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* THEME TOGGLE BUTTON */
+button.theme-toggle {
+  padding: 0.4rem 0.8rem;
+  border-radius: 50px;
+  border: 1px solid var(--text-color);
+  background: transparent;
+  color: var(--text-color);
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 200;
+  transition: all 0.3s ease;
+}
+
+button.theme-toggle:hover {
+  opacity: 0.8;
+}
+
+/* DESKTOP NAVBAR */
+ul.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+/* MOBILE RESPONSIVE MENU */
+@media (max-width: 768px) {
+  ul.nav-links {
+    flex-direction: column;
+    display: none; /* hide by default */
+    background-color: var(--nav-bg);
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 200px;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+
+  ul.nav-links.show {
+    display: flex;
+  }
+
+  .mobile-menu-btn {
+    display: block; /* only show hamburger in mobile */
+    cursor: pointer;
+    font-size: 1.8rem;
+    color: var(--text-color);
+  }
+}
+
+/* Hide hamburger in desktop */
+@media (min-width: 769px) {
+  .mobile-menu-btn {
+    display: none;
+  }
+}
