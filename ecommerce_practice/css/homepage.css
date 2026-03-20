@@ -1,0 +1,422 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    margin: 0px;
+    padding: 0px;
+}
+.fline{
+    background-color: red;
+    height: 4px;
+    width: 1350px;
+}
+header{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.233);
+    height: 40px;
+    width: 1350px;
+}
+.leftHeader{
+    /* border: 2px solid green; */
+    display: inline-block;
+    position: relative;
+    top: 10px;
+    left: 110px;
+}
+.leftHeader span a{
+    text-decoration: none;
+    color: red;
+    font-size: 15px;
+    font-weight: 500;
+    border-bottom: 2px solid red;
+}
+.rightHeader{
+    /*border: 2px solid brown; */
+    display: inline-block;
+    position: absolute;
+    left: 970px;
+    top: 14px;
+    font-size: 17px;
+}
+.rightHeader a{
+    text-decoration: none;
+    color: black;
+}
+.rightHeader a:hover{
+    color: red;
+}
+.rightHeader span{
+    padding:0px 10px 0px 10px;
+}
+.container{
+    /* border:2px solid brown; */
+    width: 1350px;
+    height: 750px;
+}
+.navbar{
+    /* border: 2px solid green; */
+    width: 1349px;
+    height: 140px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.233);
+}
+.navrow1{
+    /* border: 2px solid yellow; */
+    width: 90%;
+    height: 70px;
+    margin: auto;
+}
+.navrow1 .nav-title{
+    /* border: 2px solid black; */
+    display: inline-block;
+    height: 50px;
+    width: 20%;
+    font-size: 38px;
+    font-weight: bold;
+    text-align: center;
+    position: absolute;
+    top: 55px;
+}
+.navrow1 .search-bar{
+    /* border: 2px solid green; */
+    display: inline-block;
+    height: 50px;
+    width: 30%;
+    position: absolute;
+    top: 56px;
+    left: 460px;
+}
+.search-bar input[type="text"]{
+    border: 1px solid rgba(0, 0, 0, 0.233);
+    border-radius: 5px;
+    width: 100%;
+    height: 50px;
+    padding-left: 20px;
+    font-size: 15px;
+}
+.navrow1 .btn{
+    display: inline-block;
+    /* border: 2px solid brown; */
+    border: none;
+    width: 47px ;
+    height: 49px;
+    position: absolute;
+    cursor: pointer;
+    left: 819px;
+    top: 56px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.btn img{
+    width:100% ;
+    height: 49px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.navrow1 .nav-icon{
+    /* border: 2px solid darkorchid; */
+    display: inline-block;
+    width: 25%;
+    height: 50px;
+    position: relative;
+    left: 660px;
+    margin-top: 19px;
+}
+.nav-icon .user-icon{
+    /* border: 2px solid lawngreen; */
+    height: 50px;
+    width: 18%;
+    display: inline-block;
+    cursor: pointer;
+    position: absolute;
+    left: 190px;
+}
+.user-icon img{
+    height: 35px;
+    width: 35px;
+}
+.nav-icon .other-icon{
+    /* border: 2px solid red; */
+    height: 50px;
+    width: 65%;
+    display: inline-block;
+    position: relative;
+    left: 290px;
+}
+.other-icon .compare-icon{
+    /* border: 2px solid darkorange; */
+    width: 20%;
+    height: 50px;
+    display: inline-block;
+    position: absolute;
+    margin: 0px 3px;
+    cursor: pointer;
+}
+.compare-icon img{
+    height: 40px;
+    width: 40px;
+}
+.other-icon .wishlist-icon{
+    /* border: 2px solid chartreuse; */
+    width: 20%;
+    height: 50px;
+    display: inline-block;
+    position: absolute;
+    margin: 0px 30px;
+    margin: 0px 96px;
+    cursor: pointer;
+}
+.wishlist-icon img{
+    height: 40px;
+    width: 40px;
+}
+.other-icon .cart-icon{
+    /* border: 2px solid blue; */
+    width: 20%;
+    height: 50px;
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    margin: 0px 3px;
+    cursor: pointer;
+}
+.cart-icon img{
+    height: 40px;
+    width: 40px;
+}
+.navrow2{
+    /* border: 2px solid hotpink; */
+    width: 90%;
+    height: 70px;
+    margin: auto;
+}
+.navrow2-row1{
+        /* border: 2px solid darkblue; */
+        display: inline-block;
+        width: 23%;
+        background-color: #ef233c;
+        color: white;
+        text-align: center;
+        font-size: 22px;
+        padding: 14px 0px;
+        margin-top: 15px;
+        cursor: pointer;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+}
+.navrow2-row2{
+    /* border: 2px solid brown; */
+    display: inline-block;
+    margin-left: 15px;
+}
+.navrow2-row2 a{
+    text-decoration: none;
+    padding: 0px 12px;
+    color: black;
+    font-size: 20px;
+}
+.navrow2-row2 a:hover{
+    color: #ef233c;
+}
+.row1{
+    /* border: 2px solid red; */
+    height: 420px;
+    width: 100%;
+    margin-top: 30px;
+}
+.crow1{
+    /* border: 2px solid saddlebrown; */
+    height: 420px;
+    width: 70%;
+    margin: auto;
+}
+.crow1-left{
+    /* border: 2px solid green; */
+    height: 416px;
+    width: 70%;
+    background-image: url(/img/car_plumber.jpg);
+    border-radius: 5px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    display: inline-block;
+}
+.crow1-left-text-box{
+    /* border: 2px solid yellow; */
+    width: 74%;
+    height: 376px;
+    position: relative;
+    left: 170px;
+}
+.crow1-left-text-box-heading1{
+    position: relative;
+    left: 198px;
+    width: 59%;
+}
+.crow1-left-text-box-heading1 h5{
+    background-color: #ef233c;
+    text-align: center;
+    width: 74%;
+    font-size: 15px;
+    border-radius: 25px;
+    margin-top: 40px;
+    padding: 9px 0px;
+}
+.crow1-left-text-box-heading2 h3{
+    /* border: 2px solid brown;  */
+    margin-top: 15px;
+    font-size: 48px;
+    width: 51%;
+    margin-left: 197px;
+}
+.crow1-left-text-box-para{
+    /* border: 2px solid green; */
+    margin-top: 40px;
+    font-size: 17px;
+}
+.crow1-left-text-box-para p{
+    position: absolute;
+    right: 46px;
+}
+.crow1-left-text-box .btn{
+    margin-top: 40px;
+    border: none;
+    padding: 13px 22px;
+    background-color: #ef233c;
+    font-weight: bold;
+    border-radius: 5px;
+    position: absolute;
+    right: 166px;
+}
+.crow1-left-text-box .btn a{
+    text-decoration: none;
+    color: white;
+}
+.crow1-left-text-box .btn:hover{
+    background-color: black;
+    cursor: pointer;
+}
+.crow1-right{
+    /* border: 2px solid purple; */
+    display: inline-block;
+    position: absolute;
+    right: 206px;
+    height: 420px;
+    width: 20%;
+}
+.crow1-right-row1{
+    /* border: 2px solid yellow; */
+    height: 130px;
+    background-image: url(/img/headlight.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 5px;
+}
+.headlight-left{
+    /* border: 2px solid blue; */
+    height: 130px;
+    width: 45%;
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+}
+.headlight-left1{
+    /* border: 2px solid green; */
+    height: 30px;
+    margin-top: 7px;
+}
+.headlight-left1 h5{
+    background-color: #ef233c;
+    width: fit-content;
+    padding: 5px 8px;
+    margin: 0px 4px;
+    border-radius:25px;
+    font-size: 12px;
+    color: white;
+}
+.headlight-left2{
+    /* border: 2px solid green; */
+    height: 45px;
+    margin: 10px 0px;
+}
+.headlight-left2 h3{
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0px 10px;
+}
+.headlight-left3{
+    /* border: 2px solid green; */
+    height: 20px;
+    margin-top:13px;
+}
+.headlight-left3 a{
+    color: black;
+    margin: 0px 10px;
+}
+.headlight-left3 a:hover{
+    color: #ef233c;
+    text-decoration: none;
+}
+.crow1-right-row2{
+    /* border: 2px solid green; */
+    height: 130px;
+    margin: 13px auto;
+    background-image: url(/img/car.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 5px;
+}
+.car-right{
+    /* border: 2px solid rgb(1, 71, 22); */
+    height: 130px;
+    width: 48%;
+    display: inline-block;
+    padding-left: 10px;
+}
+.car{
+    /* border: 2px solid rgb(2, 54, 54); */
+    display: inline-block;
+    height: 130px;
+    width: 55%;
+    color: black;
+    position: absolute;
+    right: 0px;
+}
+.crow1-right-row3{
+    /* border: 2px solid red; */
+    background-image: url(/img/wheel.jpg);
+}
+.row2{
+    /* border: 2px solid green; */
+    height: 140px;
+    margin-top: 20px;
+}
+.row2-content{
+    /* border: 2px solid yellow; */
+    width: 70%;
+    height: 137px;
+    margin: auto;
+}
+.row2-item{
+    border: 1px solid rgba(0, 0, 0, 0.233);
+    border-radius: 5px;
+    width: 19%;
+    height: 130px;
+    display: inline-block;
+}
+.row2-margin{
+    margin: 0px 5px;
+}
+.list-item{
+    list-style: none;
+    height: 127px;
+}
+.list-item a{
+    text-decoration: none;
+    position: absolute;
+    height: 127px;
+}
+.list-item img{
+    width: 175px;
+    height: 127px;
+}
