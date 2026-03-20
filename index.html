@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Abdullah </title>
+    <!-- Load Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Three.js & AOS CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <!-- Load EmailJS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <!-- Link External Stylesheet -->
+    <link rel="stylesheet" href="./index.css">
+
+   
+    <script>
+        // Tailwind config moved to HTML to ensure it loads before Tailwind initializes
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-dark': '#0f172a', /* Slate 900 */
+                        'accent-neon': '#3b82f6', /* Blue 500 */
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-primary-dark text-gray-100 min-h-screen font-sans">
+
+    <!-- Three.js Canvas Container (will be filled by JS) -->
+    <canvas id="three-canvas"></canvas>
+
+    <!-- Main Content Wrapper -->
+    <div class="relative z-10 p-4 md:p-8 w-full"> 
+
+        <!-- Header/Navigation (3D Glass Effect - NON-STICKY) -->
+        <header id="main-header" class="max-w-7xl mx-auto py-4 px-6 flex justify-between items-center glass-header z-50 mt-4 transition-all duration-500 relative"
+                data-aos="fade-down" data-aos-duration="1200" data-aos-delay="200">
+            
+            <!-- Left Side (Profile Image & Title) -->
+            <div id="header-left" class="flex items-center space-x-2 md:space-x-3 w-auto md:w-auto md:data-aos="slide-right" data-aos-duration="1200" data-aos-delay="500">
+                <!-- 3D Profile Image Container -->
+                <div id="profile-image-container" class="rounded-full ring-2 ring-accent-neon/50 flex-shrink-0">
+                    <!-- The canvas for the 3D image cube will be inserted here -->
+                </div>
+                <div class="text-xl md:text-2xl font-extrabold tracking-widest text-accent-neon drop-shadow-[0_0_8px_rgba(59,130,246,0.6)] truncate">
+                    DΞV_PORTFOLIO
+                </div>
+            </div>
+            
+            <!-- Right Side (Navigation Links - Desktop) -->
+            <nav id="header-right" class="hidden md:block md:data-aos="slide-left" data-aos-duration="1200" data-aos-delay="500">
+                <a href="#about" class="relative text-gray-200 transition duration-300 mx-3 md:mx-4 text-lg neon-link">About</a>
+                <a href="#skills" class="relative text-gray-200 transition duration-300 mx-3 md:mx-4 text-lg neon-link">Skills</a>
+                <a href="#projects" class="relative text-gray-200 transition duration-300 mx-3 md:mx-4 text-lg neon-link">Projects</a>
+                <a href="#contact" class="relative text-gray-200 transition duration-300 mx-3 md:mx-4 text-lg neon-link">Contact</a>
+            </nav>
+            
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-toggle" class="md:hidden text-2xl text-accent-neon hover:text-white transition duration-300 flex-shrink-0">
+                <!-- Hamburger Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+            
+            <!-- Mobile Dropdown Menu -->
+            <nav id="mobile-menu" class="mobile-menu glass-header p-4 rounded-xl shadow-lg md:hidden">
+                <a href="#about" class="block py-2 text-gray-200 hover:text-accent-neon neon-link border-b border-gray-700/50" onclick="document.getElementById('mobile-menu').classList.remove('active');">About</a>
+                <a href="#skills" class="block py-2 text-gray-200 hover:text-accent-neon neon-link border-b border-gray-700/50" onclick="document.getElementById('mobile-menu').classList.remove('active');">Skills</a>
+                <a href="#projects" class="block py-2 text-gray-200 hover:text-accent-neon neon-link border-b border-gray-700/50" onclick="document.getElementById('mobile-menu').classList.remove('active');">Projects</a>
+                <a href="#contact" class="block py-2 text-gray-200 hover:text-accent-neon neon-link" onclick="document.getElementById('mobile-menu').classList.remove('active');">Contact</a>
+            </nav>
+
+        </header>
+
+        <!-- Hero Section -->
+        <section id="hero" class="max-w-7xl mx-auto py-36 md:py-48 text-center">
+            <h1 id="hero-title" class="font-black mb-4 leading-tight">
+                <!-- Dynamic text will be inserted here by JavaScript -->
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-10" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1500">
+                Building immersive digital experiences with modern frameworks and a passion for 3D visualization.
+            </p>
+            <a href="#projects" class="inline-block px-8 py-3 text-lg font-semibold rounded-lg shadow-lg transition duration-300
+                                       bg-accent-neon text-primary-dark hover:bg-blue-400 transform hover:scale-105" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="2000">
+                View My Work
+            </a>
+        </section>
+
+        <!-- About Section (Unique Animation: Fade Right - Screen se nikalna) -->
+        <section id="about" class="max-w-5xl mx-auto py-20 border-t border-gray-700/50" data-aos="fade-right" data-aos-duration="1000" data-aos-once="true">
+            <h2 class="text-4xl font-bold text-accent-neon mb-8 text-center">About Me</h2>
+            <div class="bg-gray-800/50 p-8 rounded-xl shadow-2xl border border-gray-700/50">
+
+                <!-- The source text container for character animation -->
+                <p id="bio-display-text" class="text-gray-300 text-lg mb-4 leading-relaxed"></p>
+
+                <!-- Hidden source text for LLM use -->
+                <p id="bio-source-text" class="hidden">
+                    I specialize in full-stack development with an emphasis on performance and scalable architecture. My toolkit includes React, Angular, and Node.js, but my true passion lies in incorporating modern graphical technologies like WebGL (through libraries like three.js) to create engaging and memorable user interfaces.
+                    <br><br>
+                    I believe that the best digital products combine robust functionality with exceptional design. This portfolio is an example of that philosophy, using interactive 3D elements to enhance the user experience.
+                </p>
+
+                <!-- Loading Spinner for LLM Generation -->
+                <div id="loading-spinner" class="hidden text-center py-4 text-accent-neon">
+                    <svg class="animate-spin h-5 w-5 mr-3 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span id="loading-message">Generating new bio...</span>
+                </div>
+
+                <!-- LLM Controls -->
+                <div class="flex flex-wrap gap-3 pt-4 border-t border-gray-700 mt-6">
+                    <button onclick="generateNewBio('Formal')" class="llm-button text-sm px-4 py-2 rounded-full bg-indigo-600 text-white hover:bg-indigo-500 transition duration-300 transform hover:scale-[1.05]">
+                        ✨ Formal Bio
+                    </button>
+                    <button onclick="generateNewBio('Startup Pitch')" class="llm-button text-sm px-4 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-500 transition duration-300 transform hover:scale-[1.05]">
+                        ✨ Startup Pitch Bio
+                    </button>
+                    <button onclick="generateNewBio('Casual/Friendly')" class="llm-button text-sm px-4 py-2 rounded-full bg-purple-600 text-white hover:bg-purple-500 transition duration-300 transform hover:scale-[1.05]">
+                        ✨ Casual Bio
+                    </button>
+                    <button onclick="readBioAloud()" id="btn-tts" class="llm-button text-sm px-4 py-2 rounded-full bg-emerald-600 text-white hover:bg-emerald-500 transition duration-300 ml-auto transform hover:scale-[1.05]">
+                        🔊 Read Bio Aloud
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section (Unique Animation: Zoom In - Screen ke andar se nikalna) -->
+        <section id="skills" class="max-w-7xl mx-auto py-20 border-t border-gray-700/50" data-aos="zoom-in" data-aos-duration="1000">
+            <h2 class="text-4xl font-bold text-accent-neon mb-12 text-center">My Skills & Expertise</h2>
+
+            <!-- Skills Grid: Individual Glowing Cards for each Technology/Tool -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6">
+
+                <!-- HTML/CSS (Web Development) -->
+                <div class="skill-card bg-gray-900 p-4 rounded-xl text-center transition duration-300 hover:scale-105 shadow-lg shadow-orange-500/10 hover:shadow-orange-500/50 border border-transparent hover:border-orange-500/30" data-aos="zoom-in" data-aos-delay="50">
+                    <span class="text-4xl text-orange-500 block">HTML</span>
+                    <p class="text-sm font-semibold mt-2 text-gray-200">HTML/CSS</p>
+                </div>
+
+                <!-- JavaScript (Web Development) -->
+                <div class="skill-card bg-gray-900 p-4 rounded-xl text-center transition duration-300 hover:scale-105 shadow-lg shadow-yellow-500/10 hover:shadow-yellow-500/50 border border-transparent hover:border-yellow-500/30" data-aos="zoom-in" data-aos-delay="100">
+                    <span class="text-4xl text-yellow-400 block">JS</span>
+                    <p class="text-sm font-semibold mt-2 text-gray-200">JavaScript</p>
+                </div>
+
+                <!-- React.js (Web Development) -->
+                <div class="skill-card bg-gray-900 p-4 rounded-xl text-center transition duration-300 hover:scale-105 shadow-lg shadow-blue-500/10 hover:shadow-blue-500/50 border border-transparent hover:border-blue-500/30" data-aos="zoom-in" data-aos-delay="150">
+                    <span class="text-4xl text-blue-500 block">⚛️</span>
+                    <p class="text-sm font-semibold mt-2 text-gray-200">React.js</p>
+                </div>
+
+                <!-- Angular (Web Development) -->
+                <div class="skill-card bg-gray-900 p-4 rounded-xl text-center transition duration-300 hover:scale-105 shadow-lg shadow-red-600/10 hover:shadow-red-600/50 border border-transparent hover:border-red-600/30" data-aos="zoom-in" data-aos-delay="200">
+                    <span class="text-4xl text-red-600 block">🅰️</span>
+                    <p class="text-sm font-semibold mt-2 text-gray-200">Angular</p>
+                </div>
+
+                <!-- Node.js (Web Development) -->
+                <div class="skill-card bg-gray-900 p-4 rounded-xl text-center transition duration-300 hover:scale-105 shadow-lg shadow-green-500/10 hover:shadow-green-500/50 border border-transparent hover:border-green-500/30" data-aos="zoom-in" data-aos-delay="250">
+                    <span class="text-4xl text-green-500 block">🟢</span>
+                    <p class="text-sm font-semibold mt-2 text-gray-200">Node.js</p>
+                </div>
+                
+                <!-- Tailwind CSS (Web Development) -->
+                <div class="skill-card bg-gray-900 p-4 rounded-xl text-center transition duration-300 hover:scale-105 shadow-lg shadow-cyan-300/10 hover:shadow-cyan-300/50 border border-transparent hover:border-cyan-300/30" data-aos="zoom-in" data-aos-delay="300">
+                    <span class="text-4xl text-cyan-300 block">💨</span>
+                    <p class="text-sm font-semibold mt-2 text-gray-200">Tailwind</p>
+                </div>
+
+                <!-- Manual QA (QA/Testing) -->
+                <div class="skill-card bg-gray-900 p-4 rounded-xl text-center transition duration-300 hover:scale-105 shadow-lg shadow-purple-500/10 hover:shadow-purple-500/50 border border-transparent hover:border-purple-500/30" data-aos="zoom-in" data-aos-delay="350">
+                    <span class="text-4xl text-purple-400 block">🔍</span>
+                    <p class="text-sm font-semibold mt-2 text-gray-200">Manual QA</p>
+                </div>
+                
+                <!-- Selenium (Automation) -->
+                <div class="skill-card bg-gray-900 p-4 rounded-xl text-center transition duration-300 hover:scale-105 shadow-lg shadow-green-800/10 hover:shadow-green-800/50 border border-transparent hover:border-green-800/30" data-aos="zoom-in" data-aos-delay="400">
+                    <span class="text-4xl text-green-700 block">🧪</span>
+                    <p class="text-sm font-semibold mt-2 text-gray-200">Selenium</p>
+                </div>
+
+                <!-- Jira (Tools) -->
+                <div class="skill-card bg-gray-900 p-4 rounded-xl text-center transition duration-300 hover:scale-105 shadow-lg shadow-red-700/10 hover:shadow-red-700/50 border border-transparent hover:border-red-700/30" data-aos="zoom-in" data-aos-delay="450">
+                    <span class="text-4xl text-red-600 block">🐛</span>
+                    <p class="text-sm font-semibold mt-2 text-gray-200">Jira (Bug T.)</p>
+                </div>
+
+                <!-- Git (Version Control) -->
+                <div class="skill-card bg-gray-900 p-4 rounded-xl text-center transition duration-300 hover:scale-105 shadow-lg shadow-gray-400/10 hover:shadow-gray-400/50 border border-transparent hover:border-gray-400/30" data-aos="zoom-in" data-aos-delay="500">
+                    <span class="text-4xl text-gray-400 block">⚙️</span>
+                    <p class="text-sm font-semibold mt-2 text-gray-200">Git</p>
+                </div>
+                
+                <!-- Python (Extra Skill) -->
+                <div class="skill-card bg-gray-900 p-4 rounded-xl text-center transition duration-300 hover:scale-105 shadow-lg shadow-yellow-600/10 hover:shadow-yellow-600/50 border border-transparent hover:border-yellow-600/30" data-aos="zoom-in" data-aos-delay="550">
+                    <span class="text-4xl text-yellow-600 block">🐍</span>
+                    <p class="text-sm font-semibold mt-2 text-gray-200">Python</p>
+                </div>
+                
+                <!-- SQL (Extra Skill) -->
+                <div class="skill-card bg-gray-900 p-4 rounded-xl text-center transition duration-300 hover:scale-105 shadow-lg shadow-blue-800/10 hover:shadow-blue-800/50 border border-transparent hover:border-blue-800/30" data-aos="zoom-in" data-aos-delay="600">
+                    <span class="text-4xl text-blue-700 block">🗃️</span>
+                    <p class="text-sm font-semibold mt-2 text-gray-200">SQL</p>
+                </div>
+
+            </div>
+            
+            <!-- High-Level Domain Card below the skill grid -->
+            <div class="max-w-4xl mx-auto mt-16 p-6 rounded-xl shadow-2xl bg-gray-800/50 border border-gray-700/50 text-center" data-aos="fade-up" data-aos-delay="700">
+                <h3 class="text-3xl font-bold text-indigo-400 mb-3">Software Engineering Focus</h3>
+                <p class="text-gray-300 text-lg">As a **Software Engineering** student, my foundation is built on scalable design patterns and robust system architecture. I bridge the gap between development and quality assurance, ensuring delivery of high-quality, reliable web applications.</p>
+            </div>
+        </section>
+
+        <!-- Projects Section (Unique Animation: Fade Left - Side se aana) -->
+        <section id="projects" class="max-w-7xl mx-auto py-20 border-t border-gray-700/50" data-aos="fade-left" data-aos-duration="1000">
+            <h2 class="text-4xl font-bold text-accent-neon mb-12 text-center">Featured Projects</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Project Card 1 -->
+                <div class="bg-gray-800/50 rounded-xl shadow-xl overflow-hidden hover:shadow-accent-neon/30 transition duration-500 transform hover:-translate-y-1 border border-gray-700/50" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-white mb-2">Neural Network Visualizer</h3>
+                        <p class="text-gray-400 mb-4">A real-time 3D visualization of a trained neural network, allowing users to interact with layers and nodes.</p>
+                        <span class="inline-block bg-accent-neon/20 text-accent-neon text-sm px-3 py-1 rounded-full">Three.js</span>
+                        <span class="inline-block bg-accent-neon/20 text-accent-neon text-sm px-3 py-1 rounded-full ml-2">React</span>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="bg-gray-800/50 rounded-xl shadow-xl overflow-hidden hover:shadow-accent-neon/30 transition duration-500 transform hover:-translate-y-1 border border-gray-700/50" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-white mb-2">Decentralized Finance App</h3>
+                        <p class="text-gray-400 mb-4">A secure financial dashboard featuring dynamic data charts and cryptographic hashing.</p>
+                        <span class="inline-block bg-accent-neon/20 text-accent-neon text-sm px-3 py-1 rounded-full">Angular</span>
+                        <span class="inline-block bg-accent-neon/20 text-accent-neon text-sm px-3 py-1 rounded-full ml-2">Web3</span>
+                    </div>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="bg-gray-800/50 rounded-xl shadow-xl overflow-hidden hover:shadow-accent-neon/30 transition duration-500 transform hover:-translate-y-1 border border-gray-700/50" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-white mb-2">Multi-Agent Simulation</h3>
+                        <p class="text-gray-400 mb-4">A physics-based simulation of autonomous agents using Cannon.js and complex pathfinding algorithms.</p>
+                        <span class="inline-block bg-accent-neon/20 text-accent-neon text-sm px-3 py-1 rounded-full">three.js</span>
+                        <span class="inline-block bg-accent-neon/20 text-accent-neon text-sm px-3 py-1 rounded-full ml-2">Physics Engine</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section (Unique Animation: Fade Up - Neeche se aana) -->
+        <section id="contact" class="max-w-3xl mx-auto py-20 border-t border-gray-700/50" data-aos="fade-up" data-aos-duration="1000">
+            <h2 class="text-4xl font-bold text-accent-neon mb-8 text-center">Get In Touch</h2>
+            <div class="bg-gray-800/50 p-8 rounded-xl shadow-2xl border border-gray-700/50">
+                <p class="text-gray-300 text-lg mb-6 text-center">
+                    Have a project in mind or want to discuss the future of 3D web development?
+                    Feel free to reach out.
+                </p>
+                <form id="contact-form" class="space-y-4">
+                    <input type="text" placeholder="Your Name" name="from_name" class="form-input-custom w-full p-3 rounded-lg bg-gray-900 border border-gray-700 text-white transition" required>
+                    <input type="email" placeholder="Your Email" name="reply_to" class="form-input-custom w-full p-3 rounded-lg bg-gray-900 border border-gray-700 text-white transition" required>
+                    <textarea placeholder="Your Message" rows="4" name="message" class="form-input-custom w-full p-3 rounded-lg bg-gray-900 border border-gray-700 text-white transition" required></textarea>
+                    
+                    <button type="submit" id="submit-btn" class="w-full py-3 rounded-lg bg-accent-neon text-primary-dark font-semibold hover:bg-blue-400 transition duration-300 transform hover:scale-[1.01]">
+                        Send Message
+                    </button>
+                </form>
+                
+                <!-- Feedback Message Display -->
+                <div id="contact-feedback" class="text-center mt-6 p-4 rounded-lg hidden"></div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="max-w-7xl mx-auto py-8 text-center text-gray-500 border-t mt-10 border-gray-700/50">
+            &copy; 2025 A.I. Developer Portfolio, Developed by Muhammad Abdullah.
+        </footer>
+
+    </div>
+
+    <!-- Link External JavaScript -->
+    <script src="./index.js"></script>
+</body>
+</html>
