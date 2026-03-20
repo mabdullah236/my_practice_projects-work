@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* --- Fix for Phone Number Input --- */
+
+/* Wrapper ko set karein taake wo flex ho */
+.PhoneInput {
+  display: flex;
+  align-items: center;
+}
+
+/* Country Selector (Flag) ko thora gap dein */
+.PhoneInputCountry {
+  margin-right: 10px;
+}
+
+/* Asal Input Field ko full width aur transparent karein */
+.PhoneInputInput {
+  flex: 1;
+  min-width: 0;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: inherit; /* Dark mode k liye zaroori */
+  font-size: 1rem;
+}
+
+/* Jab focus ho to blue border wrapper par aye (not inner input) */
+.phone-input-container:focus-within {
+  border-color: #2563eb; /* Blue-600 */
+  box-shadow: 0 0 0 1px #2563eb;
+}

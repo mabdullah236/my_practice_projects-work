@@ -1,0 +1,198 @@
+/* --------------------------------------------------- */
+/* GENERAL FIXES & SCROLLBARS */
+/* --------------------------------------------------- */
+
+/* FIX 1: Prevent Horizontal Scrolling (CRITICAL FIX) */
+body {
+    overflow-x: hidden;
+    width: 100%; /* Ensure body takes full width */
+    max-width: 100%; /* Ensure content doesn't exceed 100% */
+}
+
+/* Custom scrollbar for better aesthetics */
+body::-webkit-scrollbar {
+    width: 8px;
+}
+body::-webkit-scrollbar-thumb {
+    background-color: #4f46e5; /* Indigo */
+    border-radius: 4px;
+}
+body::-webkit-scrollbar-track {
+    background-color: #111827; /* Dark background */
+}
+
+/* --------------------------------------------------- */
+/* 3D & HEADER STYLES */
+/* --------------------------------------------------- */
+
+/* Custom styles for the 3D canvas to cover the background */
+#three-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Send it to the back */
+}
+
+/* CSS for the Glass Navbar (Enhanced) */
+.glass-header {
+    background-color: rgba(15, 23, 42, 0.4); /* Primary Dark with MORE transparency */
+    backdrop-filter: blur(12px); /* Slightly stronger blur */
+    box-shadow: 0 4px 50px rgba(59, 130, 246, 0.2); /* Neon glow shadow */
+    border: 1px solid rgba(59, 130, 246, 0.3); /* Accent border */
+    border-radius: 16px; /* More rounded corners */
+    opacity: 0; /* Hidden initially for custom animation */
+}
+
+/* Neon Hover Effect for Links */
+.neon-link:hover {
+    color: #ffffff; /* White text on hover */
+    text-shadow: 0 0 5px #3b82f6, 0 0 10px #3b82f6; /* Subtle neon blue glow */
+}
+
+/* Custom styles for the 3D Image Container */
+#profile-image-container {
+    width: 60px; /* Small size for profile image container */
+    height: 60px;
+    overflow: hidden;
+}
+#profile-image-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Ensure AOS fade-down starts correctly */
+.glass-header[data-aos="fade-down"] {
+    opacity: 0;
+}
+.glass-header[data-aos="fade-down"].aos-animate {
+    opacity: 1;
+}
+
+/* Mobile Menu styles */
+.mobile-menu {
+    position: absolute;
+    top: 100%; /* Position right below the header */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    z-index: 40;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.mobile-menu.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* --------------------------------------------------- */
+/* HERO TEXT ANIMATION (Typing & Drop-down) */
+/* --------------------------------------------------- */
+
+.animated-char {
+    display: inline-block;
+    opacity: 0;
+    /* Starts 80px up for a DRAMATIC drop effect */
+    transform: translateY(-80px); 
+    /* Transition for the fall (0.5s) with a bounce effect (cubic-bezier) */
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+.animated-char.visible {
+    opacity: 1; /* Instant opacity change for typing feel */
+    transform: translateY(0); /* Drops down to original position */
+}
+
+/* FIX: Adjusted mobile font size to 24px (text-2xl) for better fit */
+.line-1 {
+    /* Gradient color for Hello, I'm Muhammad Abdullah */
+    color: transparent;
+    background-image: linear-gradient(to right, #6366f1, #3b82f6); /* Indigo to Blue */
+    background-clip: text;
+    -webkit-background-clip: text;
+    font-size: 24px; /* Base for mobile (text-2xl) */
+}
+.line-2 {
+    color: white; /* White color for A.I. Developer */
+    font-size: 14px; /* Base for mobile (text-2xl) */
+}
+/* Override mobile font size for larger screens */
+@media (min-width: 640px) { /* sm breakpoint */
+    .line-1 {
+        font-size: 4.5rem; /* 72px for md:text-7xl equivalent */
+    }
+}
+/* Override mobile font size for larger screens */
+@media (min-width: 640px) { /* sm breakpoint */
+    .line-2 {
+        font-size: 2.5rem; /* 72px for md:text-7xl equivalent */
+    }
+}
+
+
+/* --------------------------------------------------- */
+/* ABOUT SECTION CHARACTER ANIMATION (Zoom In) */
+/* --------------------------------------------------- */
+
+.about-char {
+    display: inline-block;
+    opacity: 0;
+    /* Starts smaller and slightly translated back (simulating depth/screen entry) */
+    transform: scale(0.8) translateY(10px); 
+    /* Custom transition for a smooth, unique reveal */
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+.about-char.visible {
+    opacity: 1;
+    transform: scale(1) translateY(0); /* Zoom out and settle */
+}
+/* Ensure spaces remain invisible but still take up space */
+.about-char.space {
+    opacity: 1;
+    transform: none;
+    transition: none;
+}
+
+/* --------------------------------------------------- */
+/* CONTACT FORM FOCUS & TYPING EFFECTS */
+/* --------------------------------------------------- */
+
+/* Keyframes for the pulsating glow effect on focus */
+@keyframes neon-pulsate {
+    0% { box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4), 0 0 10px rgba(59, 130, 246, 0.7); }
+    50% { box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.7), 0 0 20px rgba(59, 130, 246, 1); } /* Stronger glow at peak */
+    100% { box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4), 0 0 10px rgba(59, 130, 246, 0.7); }
+}
+
+/* Keyframes for the subtle glitch/flicker effect on keypress */
+@keyframes text-flicker {
+    0%, 100% { opacity: 1; }
+    5% { opacity: 0.8; text-shadow: 0 0 1px #3b82f6; }
+    10% { opacity: 1; }
+    15% { opacity: 0.9; }
+    20% { opacity: 1; }
+}
+
+.form-input-custom {
+    /* Remove default browser focus ring */
+    outline: none; 
+    /* Base transition for smooth effect */
+    transition: all 0.3s ease;
+    position: relative;
+}
+.form-input-custom:focus {
+    /* Stronger base neon border */
+    border-color: #3b82f6; 
+    /* Apply the pulsating animation */
+    animation: neon-pulsate 1.5s infinite alternate; /* 1.5s duration, repeats infinitely, alternates direction */
+    /* Set initial shadow state when focused (before animation starts) */
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4), 0 0 10px rgba(59, 130, 246, 0.7);
+}
+
+/* Style for the typing effect (applied via JS) */
+.typing-flicker {
+     animation: text-flicker 0.2s linear 1; /* Quick flicker on input */
+}

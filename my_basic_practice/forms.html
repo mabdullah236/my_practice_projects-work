@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+    <style>
+        .container {
+            margin-left: auto;
+            margin-right: auto;
+            border: 2px solid black;
+            height: 35rem;
+            width: 30rem;
+        }
+        .hei{
+            height: 2rem;
+        }
+        .wid{
+            width: 26rem;
+        }
+        .name .box1 {
+            width: 10rem;
+            margin-left: 2rem;
+            margin-top: 2rem;
+        }
+        .clr{
+            border: 2px solid gray;
+        }
+        .name .box2 {
+            float: right;
+            margin-top: -2.4rem;
+            margin-right: 2rem;
+        }
+        .email {
+            margin-left: 2rem;
+            margin-top: 2rem;
+        }
+        .password {
+            margin-top: 2rem;
+            margin-left: 2rem;
+        }
+        .conpas {
+            margin-top: 2rem;
+            margin-left: 2rem;
+        }
+        .button {
+            width: 7rem;
+            margin-left: 11.5rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <div class="container">
+            <div class="name">
+                <div>
+                    <input class="box1 hei" type="text" placeholder="First Name">
+                </div>
+                <div>
+                    <input class="box2 hei" type="text" placeholder="Last name">
+                </div>
+            </div>
+            <div>
+                <input class="email hei wid clr" type="emai" placeholder="Enter your email">
+            </div>
+            <div>
+                <input class="password hei wid" type="password" placeholder="Enter your password">
+            </div>
+            <div>
+                <input class="conpas hei wid clr" type="confirm" placeholder="Confirm your password">
+            </div>
+            <div>
+                <input class="button hei" type="button" name="Submit">
+            </div>
+        </div>
+    </form>
+</body>
+</html>
